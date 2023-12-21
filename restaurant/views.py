@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from rest_framework.response import Response
-from .models import Menu
-from .serializers import MenuSerializer
+from .models import Menu, Booking
+from .serializers import MenuSerializer, BookingSerializer
+from rest_framework import permissions
 
 # Create your views here.
 
@@ -67,6 +68,10 @@ class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView
         return Response({'status': 'success'})
 
         
-        
+class BookingViewSet(viewsets.ModelViewSet):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
 
 
