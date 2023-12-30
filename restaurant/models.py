@@ -20,4 +20,7 @@ class Menu(models.Model):
     def __str__(self):
         return str(self.ID) + '_' + self.Title
     
+    def get_item(self):
+        return f'{self.Title} : {str(self.Price)}'
+    
     
